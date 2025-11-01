@@ -1,0 +1,354 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopify Compliance Channels Connection</title>
+  <link rel="icon" type="image/jpg" href="https://i.ibb.co/9kqzqV11/Whats-App-Image-2025-07-15-at-2-46-27-PM.jpg">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --shopify-green: #96bf48;
+      --shopify-blue: #469425;
+      --shopify-dark: #2d3538;
+      --shopify-light: #f5f5f5;
+      --shopify-red: #24A1DE;
+      --shopify-redd: #cc3412;
+      --shopify-bg: #f2f7fa;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .loading-bar { width: 0%; transition: width 0.5s linear; }
+    .advisor-card { transform: scale(0.9); opacity: 0; transition: all 0.5s ease-out; }
+    .advisor-card.show { transform: scale(1); opacity: 1; }
+    .status-message { animation: fadeInOut 1.5s ease-in-out; }
+    @keyframes fadeInOut { 0%,100%{opacity:0;} 50%{opacity:1;} }
+  </style>
+</head>
+
+<body class="bg-[var(--shopify-bg)] min-h-screen flex flex-col items-center justify-center p-4">
+
+  <!-- Loading Container -->
+  <div id="loading-container" class="w-full max-w-md bg-white rounded-xl shadow-lg p-6 md:p-8 text-center">
+    <div class="flex justify-center mb-6 animate-float">
+      <img src="https://wa.link/fiupk2Whats-App-Image-2025-07-15-at-2-46-27-PM.jpg" alt="Shopify Logo" class="h-12">
+    </div>
+    <h1 class="text-2xl font-bold text-gray-800 mb-2">Loading Your Console</h1>
+    <p class="text-gray-600 mb-6">Connecting you with a dedicated Shopify advisor</p>
+    <div class="relative mb-8">
+      <div class="progress-container h-2 bg-gray-200 rounded-full overflow-hidden">
+        <div id="progress-fill" class="h-2 bg-gradient-to-r from-[var(--shopify-blue)] to-[var(--shopify-green)]"></div>
+      </div>
+      <div id="progress-text" class="text-sm text-gray-500 mt-2">0%</div>
+    </div>
+    <div id="status-message" class="text-xs text-gray-400 mt-4 italic">Initializing connection...</div>
+  </div>
+
+  <!-- Middle Verification Page -->
+  <div id="verification-container" class="w-full max-w-md bg-white rounded-xl shadow-lg p-6 md:p-8 text-center hidden">
+    <div class="flex justify-center mb-6">
+      <div class="w-16 h-16 rounded-full bg-[var(--shopify-green)] flex items-center justify-center text-white text-3xl">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+    <h1 class="text-2xl font-bold text-gray-800 mb-2">Compliance Verification failed</h1>
+    <p class="text-gray-600 mb-6">Your case details was not validated.<br>Please wait while we connect you to an available specialist.</p>
+    <div class="text-4xl font-bold text-[var(--shopify-green)] mb-2" id="countdown">15</div>
+    <p class="text-sm text-gray-500">Redirecting in <span id="countdown-text">15</span> seconds...</p>
+  </div>
+
+  <!-- Advisor Container -->
+  <div id="advisor-container" class="w-full max-w-md bg-white rounded-xl shadow-lg p-6 md:p-8 advisor-card hidden">
+    <div class="flex justify-between items-start mb-6">
+      <img src="https://wa.link/fiupk2Whats-App-Image-2025-07-15-at-2-46-27-PM.jpg" alt="Shopify Logo" class="h-10">
+      <div class="bg-[var(--shopify-green)]/20 text-[var(--shopify-dark)] text-xs px-2 py-1 rounded-full flex items-center">
+        <i class="fas fa-check-circle mr-1 text-[var(--shopify-green)]"></i> Connected
+      </div>
+    </div>
+    <h1 class="text-2xl font-bold text-gray-800 mb-1">Resolution Console</h1>
+    <p class="text-gray-600 mb-6">Ready to assist with your case<br>Kindly contact your preferred specialist</p>
+    <!-- (Your specialist carousel goes here – unchanged from your original code) -->
+    <div class="relative">
+      <div id="specialist-carousel" class="overflow-hidden">
+        <!-- Specialist 1 -->
+        <div class="specialist-slide bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 mb-6 card-hover" data-index="0">
+          <div class="flex items-center mb-4">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold mr-4">
+              S
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Shopify Resolution Unit <i class="fas fa-check-circle text-blue-500 ml-1 text-sm"></i></h3>
+              <p class="text-gray-500 text-sm">Casper Resolution Channel</p>
+              <div class="flex mt-1">
+                <span class="text-xs bg-blue-500/10 text-blue-600 px-2 py-1 rounded mr-2">Admin Staff</span>
+                <span class="text-xs bg-indigo-500/10 text-indigo-600 px-2 py-1 rounded">7+ years</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Ticket No.</div>
+              <div class="font-medium">#MTD-019017</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Key Task</div>
+              <div class="font-medium">Resolution</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Tasks Completed</div>
+              <div class="font-medium">312</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Status</div>
+              <div class="font-medium text-green-600 flex items-center">
+                <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span> Active
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialist 2 -->
+        <div class="specialist-slide bg-gradient-to-br from-green-50 to-teal-50 rounded-lg p-6 mb-6 card-hover hidden" data-index="1">
+          <div class="flex items-center mb-4">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center text-white text-2xl font-bold mr-4">
+              D
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Shopify Expert Page <i class="fas fa-check-circle text-blue-500 ml-1 text-sm"></i></h3>
+              <p class="text-gray-500 text-sm">Casper Expert Support</p>
+              <div class="flex mt-1">
+                <span class="text-xs bg-green-500/10 text-green-600 px-2 py-1 rounded mr-2">Expert</span>
+                <span class="text-xs bg-teal-500/10 text-teal-600 px-2 py-1 rounded">3+ years</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Ticket No.</div>
+              <div class="font-medium">#MTD-92674LM</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Key Task</div>
+              <div class="font-medium">Personalised Expert Guild</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Cases Solved</div>
+              <div class="font-medium">124</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Status</div>
+              <div class="font-medium text-green-600 flex items-center">
+                <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span> Available
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialist 3 -->
+        <div class="specialist-slide bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 mb-6 card-hover hidden" data-index="2">
+          <div class="flex items-center mb-4">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white text-2xl font-bold mr-4">
+              J
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Shopify Review Hub<i class="fas fa-check-circle text-blue-500 ml-1 text-sm"></i></h3>
+              <p class="text-gray-500 text-sm">Casper Review Channel</p>
+              <div class="flex mt-1">
+                <span class="text-xs bg-purple-500/10 text-purple-600 px-2 py-1 rounded mr-2">Store Audit Advisor</span>
+                <span class="text-xs bg-pink-500/10 text-pink-600 px-2 py-1 rounded">3+ years</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Ticket No.</div>
+              <div class="font-medium">#MTD-92674LM</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Key Task</div>
+              <div class="font-medium">Store Review Only</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Cases Reviewed</div>
+              <div class="font-medium">105</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+              <div class="text-gray-500 mb-1">Status</div>
+              <div class="font-medium text-green-600 flex items-center">
+                <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span> Online
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between mt-4">
+        <button id="prev-specialist" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors">
+          <i class="fas fa-chevron-left mr-2"></i> Previous
+        </button>
+        <div class="flex space-x-2">
+          <div class="w-2 h-2 rounded-full bg-blue-500 specialist-indicator" data-index="0"></div>
+          <div class="w-2 h-2 rounded-full bg-gray-300 specialist-indicator" data-index="1"></div>
+          <div class="w-2 h-2 rounded-full bg-gray-300 specialist-indicator" data-index="2"></div>
+        </div>
+        <button id="next-specialist" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors">
+          Next <i class="fas fa-chevron-right ml-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="space-y-3 specialist-contact" data-specialist="0">
+      <a href="https://wa.link/fiupk2" class="block bg-[var(--shopify-blue)] hover:bg-[var(--shopify-dark)] text-white py-3 px-4 rounded-lg text-center transition-colors duration-300 flex items-center justify-center">
+        <i class="fab fa-whatsapp mr-2 text-lg"></i> Connect via WhatsApp
+      </a>
+      <a href="https://t.me/ShopifyTechnical_Service" class="block bg-[var(--shopify-red)] hover:bg-[var(--shopify-dark)] text-white py-3 px-4 rounded-lg text-center transition-colors duration-300 flex items-center justify-center">
+        <i class="fas fa-paper-plane mr-2 text-lg"></i> Connect via Telegram
+      </a>
+      <a href="mailto:Casperdigitalsolutions@gmail.com" class="w-full bg-[var(--shopify-redd)] hover:bg-[var(--shopify-dark)] text-white py-3 px-4 rounded-lg text-center transition-colors duration-300 flex items-center justify-center cursor-pointer">
+        <i class="fas fa-envelope mr-2 text-lg"></i> casperdigitalsolutions@gmail.com
+      </a>
+    </div>
+
+    <div class="space-y-3 specialist-contact hidden" data-specialist="1">
+    <a href="https://wa.link/fiupk2" class="block bg-[var(--shopify-blue)] hover:bg-[var(--shopify-dark)] text-white py-3 px-4 rounded-lg text-center transition-colors duration-300 flex items-center justify-center">
+        <i class="fab fa-whatsapp mr-2 text-lg"></i> Connect via WhatsApp
+      </a>
+      <a href="mailto:casperdigitalsolutions@gmail.com" class="w-full bg-[var(--shopify-redd)] hover:bg-[var(--shopify-dark)] text-white py-3 px-4 rounded-lg text-center transition-colors duration-300 flex items-center justify-center cursor-pointer">
+        <i class="fas fa-envelope mr-2 text-lg"></i> casperdigitalsolutions@gmail.com
+      </a>
+    </div>
+
+    <div class="space-y-3 specialist-contact hidden" data-specialist="2">
+      <a href="https://wa.link/fiupk2" class="block bg-[var(--shopify-blue)] hover:bg-[var(--shopify-dark)] text-white py-3 px-4 rounded-lg text-center transition-colors duration-300 flex items-center justify-center">
+        <i class="fab fa-whatsapp mr-2 text-lg"></i> Connect via WhatsApp
+      </a>
+      <a href="mailto:casperdigitalsolutions@gmail.com" class="w-full bg-[var(--shopify-redd)] hover:bg-[var(--shopify-dark)] text-white py-3 px-4 rounded-lg text-center transition-colors duration-300 flex items-center justify-center cursor-pointer">
+        <i class="fas fa-envelope mr-2 text-lg"></i> casperdigitalsolutions@gmail.com
+      </a>
+    </div>
+
+    <div class="mt-6 text-center text-xs text-gray-400">
+      <p>This connection is secured and encrypted for your protection</p>
+      <div class="flex justify-center mt-2 space-x-2">
+        <i class="fas fa-lock"></i>
+        <i class="fas fa-shield-alt"></i>
+        <i class="fas fa-fingerprint"></i>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Specialist carousel functionality
+      const prevBtn = document.getElementById('prev-specialist');
+      const nextBtn = document.getElementById('next-specialist');
+      const slides = document.querySelectorAll('.specialist-slide');
+      const indicators = document.querySelectorAll('.specialist-indicator');
+      const contacts = document.querySelectorAll('.specialist-contact');
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('hidden', i !== index);
+        });
+        indicators.forEach((indicator, i) => {
+          indicator.classList.toggle('bg-blue-500', i === index);
+          indicator.classList.toggle('bg-gray-300', i !== index);
+        });
+        contacts.forEach((contact, i) => {
+          contact.classList.toggle('hidden', i !== index);
+        });
+        currentSlide = index;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        let newIndex = currentSlide - 1;
+        if (newIndex < 0) newIndex = slides.length - 1;
+        showSlide(newIndex);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        let newIndex = currentSlide + 1;
+        if (newIndex >= slides.length) newIndex = 0;
+        showSlide(newIndex);
+      });
+
+      // Initialize carousel
+      showSlide(0);
+
+      // Loading progress functionality
+      const progressFill = document.getElementById('progress-fill');
+      const progressText = document.getElementById('progress-text');
+      const loadingContainer = document.getElementById('loading-container');
+      const verificationContainer = document.getElementById('verification-container');
+      const advisorContainer = document.getElementById('advisor-container');
+      const statusMessage = document.getElementById('status-message');
+
+      // Status messages
+      const statusMessages = [
+        "Analyzing compliance history...",
+        "Checking partner records...",
+        "Validating ticket details...",
+        "Optimizing connection...",
+        "Finalizing security checks...",
+        "Establishing secure channel..."
+      ];
+
+      // Simulate loading progress
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 5;
+        if (progress > 100) progress = 100;
+
+        progressFill.style.width = `${progress}%`;
+        progressText.textContent = `${Math.floor(progress)}%`;
+
+        if (progress % 20 < 5) {
+          statusMessage.textContent = statusMessages[Math.floor(Math.random() * statusMessages.length)];
+        }
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            loadingContainer.classList.add('hidden');
+            verificationContainer.classList.remove('hidden');
+
+            // Start 15-second countdown
+            let countdown = 15;
+            const countdownElement = document.getElementById('countdown');
+            const countdownText = document.getElementById('countdown-text');
+            const countdownInterval = setInterval(() => {
+              countdown--;
+              countdownElement.textContent = countdown;
+              countdownText.textContent = countdown;
+              if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                verificationContainer.classList.add('hidden');
+                advisorContainer.classList.remove('hidden');
+                advisorContainer.classList.add('show');
+              }
+            }, 1000);
+          }, 800);
+        }
+      }, 300);
+    });
+  </script>
+</body>
+</html>
